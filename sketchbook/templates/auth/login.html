@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="row login-section">
+
+  <div class="col-xs-12">
+    <div class="form-box">
+       <form class="form-horizontal" method='POST' action="{{url_for('auth.login')}}">
+
+		     <div class="form-group">
+           <label for="email">
+             Enter your e-mail address:
+           </label>
+           <p class="text-small">
+			          Use the e-mail address that you've signed up with.
+           </p>
+           <input type="text" name="email" value="{{email}}" class="form-control">
+           {% if error %}
+           <p class="error">{{error}}</p>
+           {% endif %}
+         </div>
+
+
+		 <div class="form-group">
+           <label for="password">
+             Type your password:
+           </label>
+           <p class="text-small">
+		           We have no restrictions on passwords. All risk is the user's.
+           </p>
+           <input type="password" name="password" class="form-control">
+           {% if error %}
+           <p class="error">{{error}}</p>
+           {% endif %}
+         </div>
+
+         <div class="form-group">
+           <input type="submit" value="Login" class="submit">
+         </div>
+       </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

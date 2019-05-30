@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="row">
+  <div class="col-xs-12">
+    <div class="form-box">
+      <form class="form-horizontal" method="POST">
+        <div class="form-group">
+          <label for="name">
+            Tumblr name:
+          </label>
+          <input type="text"
+                 name="name"
+                 class="form-control"
+                 placeholder="tumblr name"
+                 id="tumblrname"
+                 value="{{tumblr_name}}"
+                 required
+                 autocomplete="off">
+          <p class="error text-small" id="tumblr-warning"><p>
+        </div>
+        <div class="form-group col-xs-6">
+          <label for="name">
+            Tag:
+          </label>
+          <input type="text"
+                 name="tag"
+                 class="form-control"
+                 placeholder="tag"
+                 value="{{tag}}"
+                 id="tag">
+          <p class="error text-small" id="tumblr-warning"><p>
+        </div>
+        <div class="form-group col-xs-3">
+          <label for="offset">
+            Offset:
+          </label>
+          {% if offset and limit %}
+          <input type="number"
+                 name="offset"
+                 class="form-control"
+                 value="{{offset + limit}}"
+                 id="offset">
+          {% else %}
+          <input type="number"
+                 name="offset"
+                 class="form-control"
+                 value=0
+                 id="offset">
+          {% endif %}
+          <p class="error text-small" id="tumblr-warning"><p>
+        </div>
+        <div class="form-group col-xs-3">
+          <label for="n_items">
+            Show images (0-20):
+          </label>
+          <select name="n_items" class="form-control">
+            {% for i in [1, 5, 10, 15, 20] %}
+              {% if not limit and i == 20 %}
+              <option value={{i}} selected>{{i}}</option>
+              {% elif i == limit %}
+              <option value={{i}} selected>{{i}}</option>
+              {% else %}
+              <option value={{i}}>{{i}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <p class="error text-small" id="tumblr-warning"><p>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Load images" class="submit" id="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+  {% if items %}
+  <div class="col-xs-12 main-view">
+    <div class="col-xs-12">
+      <p>Showing {{offset}}-{{max_post}} of {{total_posts}}</p>
+    </div>
+    {% for item in items %}
+    <div class="col-xs-12 item-box">
+      <img src="{{item.link}}" class="item-img"><br>
+      {{item.caption}}
+      <p>{{item.blog_name}}</p>
+      <a href="{{item.post_url}}" target="_blank">Link to original post</a><br>
+      <p>
+        {% for tag in item.tags %}
+        <form method="POST" action="{{url_for('tumblr')}}" class="form-inline">
+          <input type="hidden" name="name" value={{tumblr_name}} class="input-inline">
+          <input type="hidden" name="offset" value=0 class="input-inline">
+          <input type="hidden" name="limit" value={{limit}} class="input-inline">
+          <input type="hidden" name="tag" value="{{tag}}" class="input-inline">
+          <input type="submit" value="{{tag}}" class="submit-inline">
+        </form>
+        {% endfor %}
+      </p>
+      <form class="form-horizontal" method="POST" action="{{url_for('save_tumblr')}}" enctype=multipart/form-data>
+        <input type="hidden" name="link" value="{{item.link}}">
+        <input type="hidden" name="keywords" value="{{(', ').join(item.tags)}}">
+        <input type="hidden" name="note" value="{{item.post_url}}">
+        <input type="hidden" name="title" value="{{item.caption}}">
+        <input type="submit" value="Save this as private item" class="submit" id="submit">
+      </form>
+    </div>
+  {% endfor %}
+  </div>
+
+  {% if max_post < total_posts %}
+  <div class="col-xs-6">
+    <div>
+      <form method="POST">
+        <div class="form-group">
+          <input type="hidden" name="name" value="{{tumblr_name}}" id="name">
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="n_items" value="{{limit}}" id="limit">
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="offset" value="{{offset + limit}}" id="offset">
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="tag" value="{{tag}}" id="tag">
+        </div>
+        <div class="form-group">
+          {{offset}} - {{max_post}}
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Next {{limit}}" class="submit" id="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+</section>
+
+{% endblock %}

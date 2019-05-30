@@ -1,0 +1,80 @@
+<form class="form-horizontal" method="POST" action="{{url_for('new_item')}}" enctype=multipart/form-data>
+  <br>
+  <div class="form-group">
+    <select name="category">
+        <option value=0>Select a category</option>
+      {% for category in categories %}
+        <option value={{category.id}}>{{category.name}}</option>
+      {% endfor %}
+    </select>
+
+    <label>
+       or add a new category:
+      <input type="text" name="newcategory">
+    </label>
+    <label>
+      <input type="checkbox" name="public-category" value="True">
+      make public
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Paste link to image here (.png, .jpg/jpeg or .gif only):
+    </label>
+    <input type="text" class="form-control" name="link"  placeholder="Only image files" value={{link}}>
+
+    <label >
+      Or upload a file here (.png, .jpg/jpeg or .gif only, max 10MB)
+    </label>
+    <input type="file" class="form-control" name="file">
+  </div>
+  <div class="form-group">
+    <label for="title">
+      Title of the work:
+    </label>
+    <input type="text" class="form-control" name="title" value="{{title}}">
+  </div>
+
+  <div class="form-group">
+    <label for="artist">
+      Artist of the work:
+    </label>
+    <input type="text" class="form-control" name="artist" value="{{artist}}">
+  </div>
+
+  <div class="form-group">
+    <label for="notes">
+      Your notes:
+    </label>
+    <textarea class="form-control" name="note">{{note}}</textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="keywords">
+      Enter keywords:
+    </label>
+    <input type="text" class="form-control" name="keywords" value="{{keywords}}">
+  </div>
+
+  <div class="form-group">
+    <label for="public">
+      <input type="checkbox"
+             name="public"
+             value="True"
+             {% if item %}
+               {% if item.public %}
+                 checked
+               {% endif %}
+             {% endif %}>
+       Make this item public*
+       <p class="text-small">
+         A public item is visible to everyone. By default, your inspirations
+         are private.
+       </p>
+    </label>
+  </div>
+  <div class="form-group">
+    <input type="submit" value="Save" class="submit">
+  </div>
+</form>

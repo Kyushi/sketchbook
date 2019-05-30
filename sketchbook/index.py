@@ -1,8 +1,12 @@
-from flask import Flask
+from flask import (
+	Blueprint, flash, g, redirect, render_template, request, url_for
+)
+from sketchbook.auth import login_required
+from sketchbook.db import get_db
 
-app = Flask(__name__)
+bp = Blueprint('index', __name__)
 
-@app.route('/')
+@bp.route('/')
 def index():
-	return "Welcome to your cloud sketchbook"
+	return render_template('index.html') 
 

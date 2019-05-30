@@ -1,1 +1,3 @@
 sketchbookenv/
+instance/
+*.pyc

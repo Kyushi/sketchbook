@@ -1,0 +1,283 @@
+/* Colours */
+/* Fonts */
+/* Default styles */
+html, body {
+  min-height: 100%; }
+
+body {
+  font-family: Khula, sans-serif;
+  line-height: normal;
+  vertical-align: baseline;
+  background: #010101;
+  background: linear-gradient(#1b1b1b, #010101);
+  color: #a69989; }
+
+.container {
+  background: #fff;
+  min-height: 100%; }
+
+/* Links */
+a {
+  color: #41372E;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+/* Headers */
+h1 {
+  color: #010101;
+  font-size: 36px;
+  font-family: "PT Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0; }
+
+h2 {
+  color: #010101;
+  font-size: 24px; }
+
+h3, .subtitle, .category-name {
+  color: #010101;
+  font-weight: 100;
+  font-size: 18px;
+  margin: 0;
+  padding: 0; }
+
+h4 {
+  color: #010101;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0;
+  padding: 0; }
+
+p {
+  margin: 0; }
+
+.text-right {
+  text-align: right; }
+
+.center {
+  text-align: center; }
+
+.text-small {
+  font-size: 12px; }
+
+.note {
+  color: #AD2B00; }
+
+.error {
+  color: #f00; }
+
+.explanation {
+  text-align: left; }
+
+/* Page header and title styling */
+header {
+  padding-top: 1em;
+  border-bottom: 1px solid #010101; }
+
+.title {
+  color: #010101;
+  font-size: 36px;
+  font-family: "PT Sans", Arial, sans-serif;
+  float: left;
+  width: auto;
+  line-height: 1; }
+
+.title-link {
+  color: #010101; }
+
+.title-link:hover {
+  text-decoration: none; }
+
+.subtitle {
+  float: left;
+  height: 36px;
+  padding-top: 12px;
+  width: auto; }
+
+.login-link {
+  float: right;
+  width: auto; }
+
+.login-link:after {
+  clear: both; }
+
+/* Flash messages */
+.message-flash {
+  color: #010101;
+  text-align: center;
+  margin-top: 0.33em;
+  padding: 0.33em;
+  border: 1px solid #41372E;
+  background: #DDD8D2;
+  border-radius: 0.33em; }
+
+.close {
+  display: table-cell;
+  border-radius: 15px;
+  border: 1px solid #010101;
+  background: #fff;
+  color: #010101;
+  width: 21px;
+  vertical-align: middle;
+  float: right;
+  font-family: Arial; }
+
+.close:hover {
+  cursor: pointer;
+  background-color: #e6e6e6; }
+
+.close:after {
+  clear: right; }
+
+/* Menu styling */
+.menu-ul,
+.submenu {
+  list-style: none;
+  padding: 0; }
+
+.menu-ul {
+  padding-left: 15px; }
+
+.menu-li {
+  position: relative;
+  float: left;
+  width: 15%; }
+
+.holds-sub {
+  position: relative;
+  display: block; }
+
+.submenu {
+  position: absolute;
+  display: none;
+  clear: both;
+  background: #fff;
+  border-radius: 0.333em;
+  top: 100%;
+  width: 100%; }
+
+.submenu-li {
+  width: auto; }
+
+.menu-li:hover .submenu {
+  display: block;
+  z-index: 10; }
+
+.menu-li a,
+.submenu-li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0.33em; }
+
+/* Form styling on top of Bootstrap forms */
+input,
+textarea {
+  border: solid 1px #41372E; }
+
+form {
+  padding: 0.667em; }
+
+.form-inline {
+  width: auto;
+  float: left; }
+
+.input-inline,
+.submit-inline {
+  padding: 0;
+  border: none;
+  background: none; }
+
+.form-inline:after {
+  clear: both; }
+
+.submit {
+  background: #fff;
+  padding: 0.5em 0.667em 0.333em 0.667em;
+  line-height: 1; }
+
+.submit:hover {
+  background: #41372E;
+  color: #fff; }
+
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0; }
+
+/* Profile related styling */
+figure {
+  margin-bottom: 1em; }
+
+figcaption {
+  font-size: 1.5em;
+  color: #010101; }
+
+.profile-pic-preview {
+  max-width: 100%; }
+
+.profile-pic-frame {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  float: left;
+  margin-right: 1em; }
+
+.profile-pic-frame:after {
+  clear: both; }
+
+.profile-pic-frame-big {
+  max-width: 500px;
+  overflow: hidden; }
+
+.profile-pic {
+  width: 50px; }
+
+.user-box {
+  margin: 0.33em; }
+
+/* Main page styling */
+.item-img {
+  max-height: 100vh;
+  max-width: 100%; }
+
+.item-box {
+  max-height: 100%;
+  border: 1px solid #41372E;
+  border-radius: 1em;
+  padding: 1.33em;
+  margin-bottom: 0.67em; }
+
+/* Category styling */
+.form-box,
+.profile-box,
+.category-box,
+.category-complete {
+  padding: 0.667em;
+  margin-bottom: 0.667em; }
+
+.category-box:first-child {
+  margin-left: 0; }
+
+.category-box:hover,
+.category-link:hover {
+  background: #41372E;
+  color: #fff; }
+
+.category-link {
+  display: block;
+  width: 100%;
+  padding: 0.33em;
+  text-align: center; }
+
+/* Login styling */
+.login-box {
+  width: 100%;
+  margin: 1em 0; }
+
+.login-result {
+  background: #41372E;
+  color: #fff; }
+
+/*# sourceMappingURL=styles.css.map */

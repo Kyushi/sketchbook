@@ -1,0 +1,38 @@
+<header class="row">
+    <!-- Title and logo -->
+    <div class="col-xs-3 title">
+      <a href="{{url_for('auth.login')}}" class="title-link">
+        add to history
+      </a>
+    </div>
+
+    <!-- Login/logout link -->
+    <div class="col-xs-12 col-sm-2 login-link">
+      {% if g.user %}
+        <p>Logged in as:
+            {{g.user['username']}}
+          <a href="{{url_for('auth.logout')}}">Log out</a>
+        </p>
+      {% else %}
+        <a href="{{url_for('auth.login')}}">
+          Log in
+        </a>
+          or
+        <a href="{{url_for('auth.register')}}">
+          Sign up
+        </a>
+      {% endif %}
+    </div>
+</header>
+
+<!-- Flash messages -->
+<section class="subheader">
+      {% for message in get_flashed_messages() %}
+        <div class="col-xs-12 message-flash">
+          {{message}}
+          <div class="close">
+            X
+          </div>
+        </div>
+      {% endfor %}
+</section>

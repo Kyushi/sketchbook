@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="userinfo row">
+  <div class="col-xs-12">
+    <div class="profile-box">
+      <h2>{{user.username}}'s profile {% if user.id == session['user_id'] %}(that's you){% endif %}</h2>
+      <figure class="creator">
+        <img src="{{user.picture}}" class="profile-pic-preview">
+        <figcaption>{{user.username}}</figcaption>
+      </figure>
+      <table class="table">
+        <tr>
+          <td>
+            User name:
+          </td>
+          <td>
+            {{user.username}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            About:
+          </td>
+          <td>
+            {{user.about}}
+          </td>
+        </tr>
+      {% if user.id == session['user_id'] %}
+        <tr>
+          <td colspan="2">
+            <p class="note">
+              E-mail address and register date are only visible to you
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E-mail:
+          </td>
+          <td>
+            {{user.email}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Register date:
+          </td>
+          <td>
+            {{user.register_date}}
+          </td>
+        </tr>
+      {% endif %}
+      </table>
+    </div>
+    <br>
+    <div>
+      {% if user.categories %}
+      <h3>Categories:</h3>
+        {% for category in user.categories %}
+          {% if session['user_id'] == user.id or category.public %}
+            {% include 'categorycomplete.html' %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div>
+      {% if user.items %}
+      <h3>Inspirations</h3>
+        {% for item in user.items %}
+            {% if item.public or item.user_id == session['user_id'] %}
+                {% include 'itembox.html' %}
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
