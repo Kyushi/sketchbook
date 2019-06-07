@@ -1,34 +1,42 @@
 DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS idea;
+DROP TABLE IF EXISTS item;
 DROP TABLE IF EXISTS project;
 
 CREATE TABLE user (
 	id	INTEGER PRIMARY KEY AUTOINCREMENT,
-	username TEXT UNIQUE NOT NULL,
+	displayname TEXT UNIQUE NOT NULL,
 	password TEXT NOT NULL,
 	email TEXT UNIQUE NOT NULL,
 	img_link TEXT,
 	description TEXT,
-	created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	user_dir TEXT
 );
 
 CREATE TABLE project (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	projectname TEXT NOT NULL,
+	name TEXT NOT NULL,
 	description TEXT,
+	tags TEXT,
+	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+	last_changed DATETIME,
 	user_fk INTEGER NOT NULL,
+	n_scraps INTEGER,
 	FOREIGN KEY (user_fk) REFERENCES user (id)
 );
 
-CREATE TABLE idea (
+CREATE TABLE item (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	kind TEXT NOT NULL,
-	project_fk INTEGER NOT NULL,
+	project_fk INTEGER,
+	user_fk INTEGER,
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-	title TEXT NOT NULL,
-	body TEXT NOT NULL,
+	last_changed DATETIME,
+	link TEXT NOT NULL,
+	local_path TEXT,
+	body TEXT,
 	tags TEXT,
-	comments TEXT,
 	FOREIGN KEY (project_fk) REFERENCES project (id)
+	FOREIGN KEY (user_fk) REFERENCES project (id)
 );
 

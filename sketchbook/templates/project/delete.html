@@ -7,8 +7,12 @@
       <form class="form-horizontal" method="POST">
         <div class="form-group">
           <label>
-            Are you sure that you want to delete the item "{{item.title}}"
-            by {{item.artist}}?
+            Are you sure that you want to delete the project {{project.name}}?
+          </label>
+			<br>
+		  <label>
+            <input type="checkbox" name="delete_items" value="True" >
+			Delete all items in this category
           </label>
           <br>
           <input type="submit" value="Delete forever" class="submit">

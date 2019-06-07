@@ -10,13 +10,13 @@
        <form class="form-horizontal" method='POST' action="{{url_for('auth.register')}}">
 
          <div class="form-group">
-           <label for="username">
+           <label for="displayname">
              Choose a username (required):
            </label>
            <p class="text-small">
              This username will be displayed with your public posts.
            </p>
-           <input type="text" name="username" value="{{username}}" class="form-control">
+           <input type="text" name="displayname" value="{{displayname}}" autocomplete="name" class="form-control">
          </div>
 
 	       <div class="form-group">
@@ -26,7 +26,7 @@
            <p class="text-small">
 	          Type your e-mail address. Make sure to type it correctly and make sure that you use an address that you have access to. You will be sent a verification e-mail. Accounts that were not verified will not be able to post publicly and will be deleted within 5 days.
            </p>
-           <input type="text" name="email" value="{{email}}" class="form-control">
+           <input type="text" name="email" value="{{email}}" autocomplete="username email" class="form-control">
          </div>
 
          <div class="form-group">
@@ -46,7 +46,7 @@
            <p class="text-small">
 	           Make sure you use a safe password. The risk is all yours.
            </p>
-           <input type="password" name="password" class="form-control">
+           <input type="password" name="password" autocomplete="password" class="form-control">
          </div>
 
          <div class="form-group">

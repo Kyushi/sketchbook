@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if projects %}
+    {% for project in projects %}
+      {% include 'project/projectview.html' %}
+    {% endfor %}
+  {% else %}
+	You have no projects yet.
+  {% endif %}
+{% endblock %}

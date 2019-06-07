@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="userinfo row">
+  <div class="col-xs-12">
+    <div class="profile-box">
+      <h2>{{g.user['displayname']}}'s profile</h2>
+      <figure class="creator">
+        <img src="{{g.user['img_link']}}" class="profile-pic-preview">
+        <figcaption>{{g.user['displayname']}}</figcaption>
+      </figure>
+      <table class="table">
+        <tr>
+          <td>
+            User name:
+          </td>
+          <td>
+            {{g.user['displayname']}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            About:
+          </td>
+          <td>
+            {{g.user['description']}}
+          </td>
+        </tr>
+        </tr>
+        <tr>
+          <td>
+            E-mail:
+          </td>
+          <td>
+            {{g.user['email']}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Register date:
+          </td>
+          <td>
+            {{g.user['created_at']}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div>
+      <h3>Categories:</h3>
+        {% for project in projects %}
+            {% include 'project/projectview.html' %}
+        {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

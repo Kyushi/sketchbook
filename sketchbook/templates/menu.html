@@ -1,3 +1,32 @@
 <nav class="row">
+  <ul class="menu-ul col-xs-12">
+    <li class="menu-li"><a href="{{url_for('index')}}">Home</a></li>
+    <!-- Projects dropdown -->
+    <li class="menu-li holds-sub">
+      <a href="{{url_for('project.view_projects')}}" class="menu-link">Projects</a>
+	  {% if g.projects %}
+      <ul class="submenu">
+        {% for project in g.projects %}
+          <li class="submenu-li">
+            <a href="{{url_for('project.view', id=project.id)}}"
+               class="menu-link">
+              {{project.name}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+	  {% endif %}
+    </li>
+    <li class="menu-li">
+      <a href="{{url_for('project.new')}}" class="menu-link">
+        New project
+      </a>
+    </li>
+	<li class="menu-li">
+      <a href="{{url_for('item.new')}}" class="menu-link">
+        New item
+      </a>
+    </li>
+    </ul>
 
 </nav>

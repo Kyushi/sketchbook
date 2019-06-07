@@ -8,14 +8,14 @@
     <div class="form-box">
        <form class="form-horizontal" method='POST' action="{{url_for('auth.login')}}">
 
-		     <div class="form-group">
+		 <div class="form-group">
            <label for="email">
              Enter your e-mail address:
            </label>
            <p class="text-small">
 			          Use the e-mail address that you've signed up with.
            </p>
-           <input type="text" name="email" value="{{email}}" class="form-control">
+           <input type="text" name="email" value="{{email}}" autocomplete="username email" class="form-control">
            {% if error %}
            <p class="error">{{error}}</p>
            {% endif %}

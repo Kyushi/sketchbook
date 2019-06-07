@@ -7,43 +7,27 @@
       <form class="form-horizontal" method="POST">
         <div class="form-group">
           <label for="name">
-            Category name:
+            Project name:
           </label>
-          <input type="hidden" id="cat-id" value="{{category.id}}">
+          <input type="hidden" id="cat-id" value="{{project.id}}">
           <input type="text"
                  name="name"
                  class="form-control"
-                 value="{{category.name}}"
-                 id="newcategory">
+                 value="{{project.name}}"
+                 id="newproject">
           <p class="error text-small" id="catname-warning"></p>
         </div>
         <div class="form-group">
           <label for="description">
-          Give us a short description of this category:
+          Give us a short description of this project:
           </label>
           <input type="text"
                  name="description"
                  class="form-control"
-                 value="{{category.description}}">
+                 value="{{project.description}}">
         </div>
-        <div class="form-group">
-          <label for="public">
-            Make this category public*
-            <input type="checkbox"
-                   name="public"
-                   value="True"
-                   id="new-public"
-                   {% if category.public %}
-                    checked
-                   {% endif %}
-                   {% if not category.allow_private() %}
-                    disabled
-                    title="You can't make a category private if another user has an
-                          item in it."
-                   {% endif %}>
-          </label>
-        </div>
-        <div class="form-group">
+		
+		<div class="form-group">
           <input type="submit" value="Save" class="submit" id="submit">
         </div>
       </form>

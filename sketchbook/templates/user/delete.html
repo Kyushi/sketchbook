@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="row">
+  <div class="col-xs-12">
+    <div class="form-box">
+      <form action="{{url_for('user.delete')}}" method="POST">
+        <!-- Warning and explanation -->
+        <h2>Are you sure that you want to delete your profile, {{g.user['displayname']}}?</h2>
+        <p>If you delete your profile, you will also permanently delete
+          <ul class="note">
+            <li>
+              Your complete profile data (View
+              <a href="{{url_for('user.view')}}">here</a>)
+            </li>
+            <li>All your projects, and all your saved items. We do not keep any backups.</li>
+          </ul>
+          Deleting your data cannot be undone, the data is erased from the database permanently.<br>
+          You can always sign up again later, but you will have to start from scratch. Restoring data is not possible.
+        </p>
+        <input type="submit"
+               value="I'm done here, delete this account forever"
+               class="submit">
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -27,8 +27,17 @@ def create_app(test_config=None):
 	from . import auth
 	app.register_blueprint(auth.bp)
 	
+	from . import user
+	app.register_blueprint(user.bp)
+	
 	from . import index
 	app.register_blueprint(index.bp)
 	app.add_url_rule('/', endpoint='index')
-			
+	
+	from . import project
+	app.register_blueprint(project.bp)			
+	
+	from . import item
+	app.register_blueprint(item.bp)
+
 	return app

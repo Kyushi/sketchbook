@@ -1,0 +1,51 @@
+<!-- renders an item -->
+<div class="item-box">
+  {% if item.kind == 'img' %}
+  <a href="{{url_for('item.view', id=item.id)}}">
+    <img src="{{item.local_path}}" class="item-img">
+  </a><br>
+  <a href="{{item.link}}">{{item.link}}</a>
+  <p>{{item.body}}</p>
+  <div class="edit-delete">
+    <a href="{{url_for('item.edit', id=item.id)}}">
+      Edit
+    </a> |
+    <a href="{{url_for('item.delete', id=item.id)}}">
+      Delete
+    </a>
+  </div>
+  {% elif item.kind == 'link' %}
+  <a href="{{item.link}}">{{item.link}}</a>
+  <p>{{item.body}}</p>
+  <div class="edit-delete">
+    <a href="{{url_for('item.edit', id=item.id)}}">
+      Edit
+    </a> |
+    <a href="{{url_for('item.delete', id=item.id)}}">
+      Delete
+    </a>
+  </div>
+  {% elif item.kind == 'pdf' %}
+  <a href="{{item.local_path}}">{{item.local_path}}</a>
+  <p>{{item.body}}</p>
+  <div class="edit-delete">
+    <a href="{{url_for('item.edit', id=item.id)}}">
+      Edit
+    </a> |
+    <a href="{{url_for('item.delete', id=item.id)}}">
+      Delete
+    </a>
+  </div>
+  {% else %}
+  <p>{{item.link}}</p>
+  <p>{{item.body}}</p>
+  <div class="edit-delete">
+    <a href="{{url_for('item.edit', id=item.id)}}">
+      Edit
+    </a> |
+    <a href="{{url_for('item.delete', id=item.id)}}">
+      Delete
+    </a>
+  </div>
+  {% endif %}
+</div>

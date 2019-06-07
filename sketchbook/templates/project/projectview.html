@@ -1,0 +1,18 @@
+<!-- Show complete project information, edit/delete links if user is owner-->
+<div class="project-complete">
+  <p>
+    <a href="{{url_for('project.view', id=project.id)}}">
+      {{project.name}}
+    </a>
+  		{{project.description}}
+    <p class="edit-delete">
+      (<a href="{{url_for('project.edit', id=project.id)}}">
+        Edit
+      </a> |
+      <a href="{{url_for('project.delete', id=project.id)}}">
+        Delete
+      </a>)
+	  
+	  <a href="{{url_for('item.new')}}">Add item</a>
+    </p>
+</div>
