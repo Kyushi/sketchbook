@@ -34,7 +34,9 @@
 		  {% endif %}	
           <div class="form-group">
             <select name="project">
-                <option value=0>Select a project</option>
+			  <label>
+				Select a project: 
+			  </label>
               {% for project in projects %}
                 <option value={{project.id}}
                         {% if item.project_fk == project.id %}

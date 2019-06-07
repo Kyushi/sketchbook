@@ -1,0 +1,4 @@
+include sketchbook/schema
+graft sketchbook/static
+global-exclude *.pyc
+recursive-exclude sketchbook/static/users *

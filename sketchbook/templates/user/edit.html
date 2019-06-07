@@ -8,10 +8,10 @@
       <form class="form-horizontal" method="POST">
 
         <div class="form-group">
-          <h2>Edit your profile, {{user.username}}</h2>
+          <h2>Edit your profile, {{g.user['displayname']}}</h2>
           <figure class="creator">
-            <img src="{{user.picture}}" class="profile-pic-preview">
-            <figcaption>{{user.username}}</figcaption>
+            <img src="{{g.user['img_link']}}" class="profile-pic-preview">
+            <figcaption>{{g.user['displayname']}}</figcaption>
           </figure>
         </div>
 
@@ -21,7 +21,7 @@
           </label>
           <input type="text"
                  name="username"
-                 value="{{user.username}}"
+                 value="{{g.user['displayname']}}"
                  class="form-control">
           {% if error %}
             <p>{{error}}</p>
@@ -34,7 +34,17 @@
           </label>
           <input type="text"
                  name="about"
-                 value="{{user.about}}"
+                 value="{{g.user['description']}}"
+                 class="form-control">
+        </div>
+		
+		<div class="form-group">
+          <label for="email">
+            E-Mail:
+          </label>
+          <input type="text"
+                 name="email"
+                 value="{{g.user['email']}}"
                  class="form-control">
         </div>
 

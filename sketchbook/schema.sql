@@ -18,10 +18,10 @@ CREATE TABLE project (
 	name TEXT NOT NULL,
 	description TEXT,
 	tags TEXT,
+	image TEXT,
 	created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 	last_changed DATETIME,
 	user_fk INTEGER NOT NULL,
-	n_scraps INTEGER,
 	FOREIGN KEY (user_fk) REFERENCES user (id)
 );
 

@@ -7,8 +7,10 @@
       <form class="form-horizontal" method="POST" action="{{url_for('item.new')}}" enctype=multipart/form-data>
         <br>
         <div class="form-group">
+		  <label>
+			Select a project: 
+		  </label>
           <select name="project">
-              <option value=0>Select a project</option>
             {% for project in projects %}
               <option value={{project.id}}>{{project.name}}</option>
             {% endfor %}

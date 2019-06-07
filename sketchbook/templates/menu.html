@@ -27,6 +27,24 @@
         New item
       </a>
     </li>
+    {% if g.user %}
+	<!-- User dropdown -->
+    <li class="menu-li holds-sub">
+      <a href="{{url_for('user.view')}}" class="menu-link">User</a>
+      <ul class="submenu">
+          <li class="submenu-li">
+            <a href="{{url_for('user.edit')}}" class="menu-link">
+              Edit user info
+            </a>
+          </li>
+		  <li class="submenu-li">
+            <a href="{{url_for('user.delete')}}" class="menu-link">
+              Delete user account
+            </a>
+          </li>
+      </ul>
+    </li>
+    {% endif %}
     </ul>
 
 </nav>

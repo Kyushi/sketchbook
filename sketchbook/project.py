@@ -22,7 +22,7 @@ def view_projects():
 @bp.route('/<int:id>')
 @login_required
 def view(id):
-	project = get_project(id)
+	project = get_project(id) if id != 0 else None
 	items = get_items(id)
 	return render_template('/project/view.html', project=project, items=items)
 

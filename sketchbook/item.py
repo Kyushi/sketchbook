@@ -8,7 +8,7 @@ from werkzeug.exceptions import abort
 
 from sketchbook.auth import login_required
 from sketchbook.db import get_db
-from sketchbook.utils import delete_item
+from sketchbook.utils import delete_item, save_uploaded_file
 
 bp = Blueprint('item', __name__, url_prefix='/item')
 
@@ -23,7 +23,6 @@ def get_projects():
 def get_item(id):
 	db = get_db()
 	item = db.execute("SELECT * FROM item WHERE id = ?;", (id, )).fetchone()
-	print(item)
 	if item is None:
 		abort(404, f"Could not find item with id {id}")
 	if item['user_fk'] != g.user['id']:
@@ -70,20 +69,30 @@ def view(id):
 @login_required
 def new():
 	projects=get_projects()
+	if not projects:
+		flash("Please createa a project first")
+		return redirect(url_for('project.new'))
 	if request.method == 'POST':
 		error = None
 		link = request.form['link']
 		body = request.form['body']
 		tags = request.form['tags']
 		project = request.form['project']
+		local_path = None
+		kind = 'text'
+		if link:
+			kind, res = interpret_kind(link)
+			if kind == 'img' or kind == 'pdf':
+				local_path = download_file(link, res)
+		file = request.files.get('file', None)
+		filetype = file.content_type
+		if file and file.filename != '':
+			local_path, error = save_uploaded_file(file)
+			if local_path:
+				link = local_path
+				kind = 'img' if any([ft in filetype for ft in current_app.config['DISPLAYABLE_IMG']]) else 'link' 
 		if not link:
-			error = "You must enter a title or a link"
-		if not body:
-			error = "You must enter some text"
-		kind, res = interpret_kind(link)
-		local_path = None	
-		if kind == 'img' or kind == 'pdf':
-			local_path = download_file(link, res)
+			error = "You must enter a title or a link or upload a file"
 		if error is None:
 			db = get_db()
 			cur = db.execute(
@@ -92,8 +101,8 @@ def new():
 			)
 			db.commit()
 			id = cur.lastrowid
-			print("item id", id)
 			return redirect(url_for('item.view', id=id))
+		flash(error)
 	return render_template("item/new.html", projects=projects)
 
 
@@ -110,8 +119,6 @@ def edit(id):
 		project = request.form['project']
 		if not link:
 			error = "You must enter a title or a link"
-		if not body:
-			error = "You must enter some text"
 		if error is None:
 			db = get_db()
 			db.execute(

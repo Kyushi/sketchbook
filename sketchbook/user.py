@@ -10,7 +10,6 @@ from sketchbook.db import get_db
 
 
 def delete_user_dir():
-	print(current_app.root_path + g.user['user_dir'])
 	shutil.rmtree(current_app.root_path + g.user['user_dir'])
 
 
@@ -41,3 +40,8 @@ def delete():
 		return redirect(url_for('index'))
 	return render_template('user/delete.html')
 
+
+@bp.route('/edit', methods=('GET', 'POST'))
+@login_required
+def edit():
+	return render_template('user/edit.html')
