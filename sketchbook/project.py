@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 from sketchbook.auth import login_required
 from sketchbook.db import get_db
-from sketchbook.utils import load_projects, get_project, get_items, is_unique_name, delete_item 
+from sketchbook.utils import load_projects, get_project, get_project_byname, get_items, is_unique_name, delete_item 
 
 bp = Blueprint('project', __name__, url_prefix='/project')
 
@@ -15,7 +15,7 @@ bp = Blueprint('project', __name__, url_prefix='/project')
 def view_projects():
 	db = get_db()
 	error = None
-	projects = db.execute("SELECT * FROM project WHERE user_fk = ?", (g.user['id'], )).fetchall()
+	projects = db.execute("SELECT * FROM project WHERE user_fk = ? AND name NOT LIKE '.%'", (g.user['id'], )).fetchall()
 	return render_template('project/projects.html', projects=projects)
 
 
@@ -24,6 +24,14 @@ def view_projects():
 def view(id):
 	project = get_project(id) if id != 0 else None
 	items = get_items(id)
+	return render_template('/project/view.html', project=project, items=items)
+
+
+@bp.route('/<name>')
+@login_required
+def view_by_name(name):
+	project = get_project_byname(name)
+	items = get_items(project['id'])
 	return render_template('/project/view.html', project=project, items=items)
 
 

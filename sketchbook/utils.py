@@ -10,7 +10,7 @@ def load_projects():
 	if not g.user:
 		g.projects = None
 	else:
-		g.projects = get_db().execute("SELECT * FROM project WHERE user_fk = ?;", (g.user['id'], )).fetchall()
+		g.projects = get_db().execute("SELECT * FROM project WHERE user_fk = ? AND name NOT LIKE '.%';", (g.user['id'], )).fetchall()
 
 
 def get_projects():
@@ -29,6 +29,16 @@ def get_project(id):
 	project = db.execute("SELECT * FROM project WHERE id = ?;", (id, )).fetchone()
 	if project is None:
 		abort(404, f"Could not find project with id {id}")
+	if project['user_fk'] != g.user['id']:
+		abort(403, "You can only edit projects that you own")
+	return project
+
+
+def get_project_byname(name):
+	db = get_db()
+	project = db.execute("SELECT * FROM project WHERE name = ?;", (name, )).fetchone()
+	if project is None:
+		abort(404, f"Could not find project with name {name}")
 	if project['user_fk'] != g.user['id']:
 		abort(403, "You can only edit projects that you own")
 	return project

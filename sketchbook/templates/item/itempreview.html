@@ -1,10 +1,11 @@
-<!-- renders an item -->
-<div class="item-box">
+<!-- renders an item preview -->
+
+<a href="{{url_for('item.view', id=item.id)}}">
+<div class="col-xs-6 col-md-4 col-lg-3 item-preview">
 <!-- images -->
   {% if item.kind == 'img' %}
-  <a href="{{url_for('item.view', id=item.id)}}">
     <img src="{{item.local_path}}" class="item-img">
-  </a><br>
+  <br>
   <a href="{{item.link}}">{{item.link}}</a>
   <p>{{item.body}}</p>
   <div class="edit-delete">
@@ -57,3 +58,4 @@
 <!-- end texts -->
   {% endif %}
 </div>
+</a>

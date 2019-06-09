@@ -177,6 +177,10 @@ input,
 textarea {
   border: solid 1px #41372E; }
 
+textarea {
+  min-height: 150px;
+  max-height: auto; }
+
 form {
   padding: 0.667em; }
 
@@ -239,13 +243,20 @@ figcaption {
 
 /* Main page styling */
 .item-img {
-  max-height: 100vh;
+  max-height: 70%;
   max-width: 100%; }
 
 .item-box {
   max-height: 100%;
   padding: 1.33em;
-  margin-bottom: 0.67em; }
+  margin-bottom: 0.67em;
+  text-overflow: ellipsis; }
+
+.item-preview {
+  height: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
 
 /* Category styling */
 .form-box,

@@ -1,7 +1,7 @@
 <!-- Show complete project information, edit/delete links if user is owner-->
 <div class="project-complete">
   <p>
-    <a href="{{url_for('project.view', id=project.id)}}">
+    <a href="{{url_for('project.view_by_name', name=project.name)}}">
       {{project.name}}
     </a>
   		{{project.description}}
