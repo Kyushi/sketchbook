@@ -258,6 +258,13 @@ figcaption {
   white-space: nowrap;
   text-overflow: ellipsis; }
 
+.formatted-text {
+  white-space: pre-wrap; }
+
+.text-preview {
+  max-height: 70%;
+  overflow: hidden; }
+
 /* Category styling */
 .form-box,
 .profile-box,

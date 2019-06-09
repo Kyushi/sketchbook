@@ -8,16 +8,12 @@ from werkzeug.exceptions import abort
 
 from sketchbook.auth import login_required
 from sketchbook.db import get_db
-from sketchbook.utils import delete_item, save_uploaded_file
+from sketchbook.utils import delete_item, save_uploaded_file, get_projects
 
 bp = Blueprint('item', __name__, url_prefix='/item')
 
 IMAGE_ENDINGS = ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'webp', 'avif', 'heic']
 TEXT_ENDINGS = ['pdf', 'txt', 'rtf']
-
-def get_projects():
-	db = get_db()
-	return db.execute("SELECT * FROM project WHERE user_fk = ?", (g.user['id'], )).fetchall()
 
 
 def get_item(id):

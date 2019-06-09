@@ -10,28 +10,7 @@
               method="POST"
               action="{{url_for('item.edit', id=item.id)}}"
               enctype=multipart/form-data>
-		  {% if item.kind == 'img' %}
-          <div class="form-group">
-            <img src="{{item.link}}" class="item-img">
-          </div>
-		  <div class="form-group">
-            <input type="hidden" name="link" value="{{item.link}}">
-          </div>
-		  {% elif item.kind == 'text' %}
-		  <div class="form-group">
-			<label for="link">
-				Your title
-            </label>
-            <textarea class="form-control" name="link">{{item.link}}</textarea>
-		  </div>
-		  {% else %}
-	      <div class="form-group">
-            <a href="{{item.link}}">{{ item.link }}</a>
-          </div>
-		  <div class="form-group">
-            <input type="hidden" name="link" value="{{item.link}}">
-          </div>
-		  {% endif %}	
+
           <div class="form-group">
             <select name="project">
 			  <label>
@@ -48,6 +27,29 @@
             </select>
           </div>
 
+
+		  {% if item.kind == 'img' %}
+          <div class="form-group">
+            <img src="{{item.link}}" class="item-img">
+          </div>
+		  <div class="form-group">
+            <input type="hidden" name="link" value="{{item.link}}">
+          </div>
+		  {% elif item.kind == 'text' %}
+		  <div class="form-group">
+			<label for="link">
+				Your title
+            </label>
+			<input type="text" class="form-control" name="link" value="{{item.link}}">
+		  </div>
+		  {% else %}
+	      <div class="form-group">
+            <a href="{{item.link}}">{{ item.link }}</a>
+          </div>
+		  <div class="form-group">
+            <input type="hidden" name="link" value="{{item.link}}">
+          </div>
+		  {% endif %}	
           <div class="form-group">
             <label for="body">
             </label>

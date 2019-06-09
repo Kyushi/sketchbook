@@ -16,7 +16,7 @@ def load_projects():
 def get_projects():
 	"""Load all projects for a logged in user"""
 	db = get_db()
-	return db.execute("SELECT * FROM project WHERE user_fk = ?", (g.user['id'], )).fetchall()
+	return db.execute("SELECT * FROM project WHERE user_fk = ? AND name NOT LIKE '.%';", (g.user['id'], )).fetchall()
 
 
 def get_project(id):

@@ -46,7 +46,7 @@
 <!-- texts -->
   {% else %}
   <p>{{item.link}}</p>
-  <pre>{{item.body}}</pre>
+  <p class="formatted-text text-preview">{{item.body}}</p>
   <div class="edit-delete">
     <a href="{{url_for('item.edit', id=item.id)}}">
       Edit
