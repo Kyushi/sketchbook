@@ -2,9 +2,9 @@
 <div class="project-complete">
   <p>
     <a href="{{url_for('project.view_by_name', name=project.name)}}">
-      {{project.name}}
+    <h3>  {{project.name}} </h3>
     </a>
-  		{{project.description}}
+  	<p>	{{project.description}} </p>
     <p class="edit-delete">
       (<a href="{{url_for('project.edit', id=project.id)}}">
         Edit
