@@ -70,8 +70,8 @@ def edit(id):
 		description = request.form['description']
 		if not name:
 			error = "You must name your project"
-		elif not is_unique_name(name):
-			error = f"You already have a project with this name: {name}"
+		elif not is_unique_name(name) and not name == project['name']:
+			error = f"You already have another project with this name: {name}"
 		if error is None:
 			db.execute(
 				"UPDATE project SET name = ?, description = ? WHERE id = ?;",

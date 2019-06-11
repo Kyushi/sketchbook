@@ -64,7 +64,7 @@ def view(id):
 @bp.route('/new', methods=('GET', 'POST'))
 @login_required
 def new():
-	projects=get_projects()
+	projects=get_projects(include_private=True)
 	if not projects:
 		flash("Please createa a project first")
 		return redirect(url_for('project.new'))
@@ -106,7 +106,7 @@ def new():
 @login_required
 def edit(id):
 	item = get_item(id)
-	projects = get_projects()
+	projects = get_projects(include_private=True)
 	if request.method == 'POST':
 		error = None
 		link = request.form['link']

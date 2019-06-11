@@ -13,10 +13,13 @@ def load_projects():
 		g.projects = get_db().execute("SELECT * FROM project WHERE user_fk = ? AND name NOT LIKE '.%';", (g.user['id'], )).fetchall()
 
 
-def get_projects():
+def get_projects(include_private=False):
 	"""Load all projects for a logged in user"""
 	db = get_db()
-	return db.execute("SELECT * FROM project WHERE user_fk = ? AND name NOT LIKE '.%';", (g.user['id'], )).fetchall()
+	sql = "SELECT * FROM project WHERE user_fk = ?"
+	if not include_private:
+		sql += " AND name NOT LIKE '.%'"
+	return db.execute(sql, (g.user['id'], )).fetchall()
 
 
 def get_project(id):
